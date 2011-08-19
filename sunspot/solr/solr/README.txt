@@ -1,3 +1,7 @@
+修改了schema.xml
+solrconfig.xml
+并加入了mmseg4j的jar有及扩展包
+可以直接使用该github仓库，避免要手工修改配置文件了
 # Licensed to the Apache Software Foundation (ASF) under one or more
 # contributor license agreements.  See the NOTICE file distributed with
 # this work for additional information regarding copyright ownership.
