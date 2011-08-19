@@ -424,6 +424,7 @@
       <!-- <cacheControl>max-age=30, public</cacheControl> -->
     </httpCaching>
   </requestDispatcher>
+
   <!-- requestHandler plugins... incoming queries will be dispatched to the
      correct handler based on the path or the qt (query type) param.
      Names starting with a '/' are accessed with the a path equal to the 
@@ -435,6 +436,7 @@
   <requestHandler name="standard" class="solr.SearchHandler" default="true">
     <!-- default values for query parameters -->
     <lst name="defaults">
+      <str name="defType">extlucene</str>
       <str name="echoParams">explicit</str>
       <!--
        <int name="rows">10</int>
@@ -443,6 +445,11 @@
         -->
     </lst>
   </requestHandler>
+  	<requestHandler name="/mmseg4j" class="com.chenlb.mmseg4j.solr.MMseg4jHandler" >
+		<lst name="defaults">
+			<str name="dicPath">dic</str>
+		</lst>
+	</requestHandler>
   <!-- Please refer to http://wiki.apache.org/solr/SolrReplication for details on configuring replication -->
   <!-- remove the <lst name="master"> section if this is just a slave -->
   <!-- remove  the <lst name="slave"> section if this is just a master -->
@@ -912,7 +919,8 @@
   <queryResponseWriter name="xslt" class="org.apache.solr.request.XSLTResponseWriter">
     <int name="xsltCacheLifetimeSeconds">5</int>
   </queryResponseWriter>
-  <!-- example of registering a query parser
+<queryParser name="extlucene" class="com.chenlb.solr.search.ExtLuceneQParserPlugin"/>
+<!-- example of registering a query parser
   <queryParser name="lucene" class="org.apache.solr.search.LuceneQParserPlugin"/>
   -->
   <!-- example of registering a custom function parser 
